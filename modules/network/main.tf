@@ -7,8 +7,8 @@ locals {
   # This will return 6 az, which will create 6 subnets (1 per AZ)
   # azs      = slice(data.aws_availability_zones.available.names, 0, length(data.aws_availability_zones.available.names))
   
-  # hardcoding the AZ for easy-ness
-  azs = ["us-east-1a"]
+  # hardcoding 2 AZs for ALB requirement
+  azs = ["us-east-1a", "us-east-1b"]
 }
 
 ################################################################################

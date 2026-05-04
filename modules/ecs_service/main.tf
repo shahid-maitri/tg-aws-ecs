@@ -51,11 +51,11 @@ resource "aws_ecs_service" "ecs_service" {
     assign_public_ip = var.public_ip
   }
 
-  # load_balancer {
-  #   target_group_arn = aws_lb_target_group.app_tg.arn
-  #   container_name   = var.ecs_task.container_name
-  #   container_port   = var.ecs_task.container_image_port
-  # }
+  load_balancer {
+    target_group_arn = aws_lb_target_group.app_tg.arn
+    container_name   = var.ecs_task.container_name
+    container_port   = var.ecs_task.container_image_port
+  }
 
   tags = merge(
     {
@@ -71,7 +71,8 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   # Create the ALB listener BEFORE creating the ECS service
-  # depends_on = [aws_lb_listener.app_http_listener]
+  depends_on = [aws_lb_listener.app_http_listener]
+   
 }
 
 ############################################

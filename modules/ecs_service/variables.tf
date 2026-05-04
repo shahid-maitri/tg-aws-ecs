@@ -75,13 +75,13 @@ variable "ecs_task" {
   })
 }
 
-# variable "load_balancer" {
-#   type = object({
-#     internal           = bool
-#     load_balancer_type = string
-#     health_check_path  = string
-#   })
-# }
+variable "load_balancer" {
+  type = object({
+    internal           = bool
+    load_balancer_type = string
+    health_check_path  = string
+  })
+}
 
 variable "ecs_service" {
   type = object({

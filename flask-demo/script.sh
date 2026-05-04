@@ -8,14 +8,16 @@ ECR_REPO=""
 AWS_PROFILE=""
 
 IMAGE_NAME=""
-IMAGE_TAG="latest"
+IMAGE_TAG=""
 
-ECR_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}"
 
 
 # Auto-fetch account ID
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity \
   --query Account --output text --profile ${AWS_PROFILE})
+
+ECR_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}"
+
 
 # ── Build ────────────────────────────────────────────────────────────────
 echo ">>> Building Docker image..."

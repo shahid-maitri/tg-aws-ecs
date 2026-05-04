@@ -69,17 +69,20 @@ inputs = {
     container_name           = "sk-flask-container"
     container_image          = "${dependency.ecr.outputs.repository_url}:latest"
     container_image_port     = 5000
-
     cpu                      = 256
     memory                   = 512
-
     requires_compatibilities = ["FARGATE"]
     network_mode             = "awsvpc"
-
     log_group_name           = "/ecs/${include.ecs_service_common.locals.app}"
   }
 
   public_ip = true
+
+  load_balancer = {
+    internal            = false
+    load_balancer_type  = "application"
+    health_check_path   = "/health"
+  }
 
   tags = {
     ManagedBy = "Terragrunt"
