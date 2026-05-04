@@ -54,6 +54,8 @@ resource "aws_lb_target_group" "app_tg" {
   target_type = "ip" # important for Fargate tasks
   vpc_id      = var.vpc_id
 
+  deregistration_delay = 30 # Faster destroy in dev
+
   health_check {
     enabled             = true
     healthy_threshold   = 5
